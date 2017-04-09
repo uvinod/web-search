@@ -403,11 +403,13 @@ if ( ! is_php('5.4'))
 	$class = ucfirst($RTR->class);	
 	$method = $RTR->method;
 	
-
+	echo "<pre>";
+	print_r($RTR->directory);
+	echo "</pre>";die;
 
 	if (empty($class) OR ! file_exists(APPPATH.'controllers/'.$RTR->directory.$class.'.php'))
 	{
-		echo "123";die;
+
 		$e404 = TRUE;
 	}
 	else
@@ -416,7 +418,6 @@ if ( ! is_php('5.4'))
 
 		if ( ! class_exists($class, FALSE) OR $method[0] === '_' OR method_exists('CI_Controller', $method))
 		{
-			echo "1234";die;
 			$e404 = TRUE;
 		}
 		elseif (method_exists($class, '_remap'))
@@ -426,7 +427,6 @@ if ( ! is_php('5.4'))
 		}
 		elseif ( ! method_exists($class, $method))
 		{
-			echo "1235";die;
 			$e404 = TRUE;
 		}
 		/**
