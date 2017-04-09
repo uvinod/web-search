@@ -354,7 +354,7 @@ if ( ! is_php('5.4'))
  * ------------------------------------------------------
  *
  */
-echo "contro";die;
+
 	// Load the base controller class
 	require_once BASEPATH.'core/Controller.php';
 
@@ -402,7 +402,7 @@ echo "contro";die;
 	$e404 = FALSE;
 	$class = ucfirst($RTR->class);
 	$method = $RTR->method;
-
+	echo $class;die;
 	if (empty($class) OR ! file_exists(APPPATH.'controllers/'.$RTR->directory.$class.'.php'))
 	{
 		$e404 = TRUE;
