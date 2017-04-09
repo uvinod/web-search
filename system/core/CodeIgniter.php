@@ -354,6 +354,7 @@ if ( ! is_php('5.4'))
  * ------------------------------------------------------
  *
  */
+echo "contro";die;
 	// Load the base controller class
 	require_once BASEPATH.'core/Controller.php';
 

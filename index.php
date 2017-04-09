@@ -308,7 +308,7 @@ switch (ENVIRONMENT)
 
 	define('VIEWPATH', $view_folder.DIRECTORY_SEPARATOR);
 
-echo "45456testtest";die;
+
 /*
  * --------------------------------------------------------------------
  * LOAD PHP DOT ENV FILE
