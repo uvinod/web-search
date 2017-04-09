@@ -403,7 +403,7 @@ if ( ! is_php('5.4'))
 	$class = ucfirst($RTR->class);	
 	$method = $RTR->method;
 	
-	echo APPPATH.'controllers/'.$RTR->directory.$class.'.php'
+	echo APPPATH.'controllers/'.$RTR->directory.$class.'.php';
 
 	echo "<pre>";
 	print_r($RTR);
