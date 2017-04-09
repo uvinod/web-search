@@ -403,12 +403,10 @@ if ( ! is_php('5.4'))
 	$class = ucfirst($RTR->class);	
 	$method = $RTR->method;
 	
-	$RTR->directory.$class = "Login";
-	$class = "Login";
-	
+	echo $class;die;
+
 	if (empty($class) OR ! file_exists(APPPATH.'controllers/'.$RTR->directory.$class.'.php'))
 	{
-		echo "fsd";die;
 		$e404 = TRUE;
 	}
 	else
