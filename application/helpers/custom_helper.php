@@ -6,36 +6,50 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @access 	public     
  * @return 	Array   Web Search results
  */
-if ( ! function_exists('get_web_search_results'))	
-{
-	function get_web_search_results($keyword, $page, $per_page, $domain)
-	{	
 
-		$search = $domain == 'google' ? new GoogleCustomSearch() : new BingSearch();
-		$results = $search->search($keyword, $page, $per_page);	
+function get_web_search_results($keyword, $page, $per_page, $domain)
+{	
 
-		return $results;
-	}
+	$search = $domain == 'google' ? new GoogleCustomSearch() : new BingSearch();
+	$results = $search->search($keyword, $page, $per_page);	
+
+	return $results;
 }
+
 
 /**     
  * Function to count results from web api for a keyword
  * @access 	public     
  * @return 	Int   Web Search results count
  */
-if ( ! function_exists('get_web_search_results_count'))	
-{
-	function get_web_search_results_count($keyword, $domain)
-	{	
 
-		$total_count = 0;
+function get_web_search_results_count($keyword, $domain)
+{	
 
-		$search = $domain == 'google' ? new GoogleCustomSearch() : new BingSearch();
-		$results = $search->search($keyword);	
-		
-		$total_count = $results->totalResults;
-		
-		return $total_count;
+	$total_count = 0;
+
+	$search = $domain == 'google' ? new GoogleCustomSearch() : new BingSearch();
+	$results = $search->search($keyword);	
+	
+	$total_count = $results->totalResults;
+	
+	return $total_count;
+}
+
+/**     
+ * Function to check if the user is validated
+ * @access 	public     
+ * @return 	Boolean  
+ */
+function check_isvalidated($is_admin){
+
+	$CI = & get_instance();	
+
+	if($CI->session->userdata('validated') && $CI->session->userdata('is_admin') == $is_admin) {
+
+		return true;
 	}
+    
+    return false;
 }
 ?>

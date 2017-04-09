@@ -14,8 +14,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <script>
     var base_url = '<?php echo base_url(); ?>';
   </script>
-
-  <script src="<?php echo base_url(); ?>assets/js/main.js?<?php echo time(); ?>"></script>	
 	
 </head>
 <body>
@@ -23,24 +21,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  
 <div class="container">
   <div>
-    <h2 class="left">Global Search</h2>
+    <h2 class="left">City Configuration</h2>
     <span class="right"><a href="<?php echo base_url()."login/logout"; ?>">Logout</a></span>
   </div>
   <div class="clear10"></div>
 	<div class="panel panel-default">
         <div class="panel-body">
-            <form id="form">
+            <form role="form" action='<?php echo base_url();?>configuration/index' method="post" id="form">
+                <input type="hidden" name="id" value="<?php echo $id; ?>" />
+                
+                <?php if($this->session->flashdata('msg')!="") { ?>
+                  <div class="alert alert-success alert-dismissable">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <?php echo $this->session->flashdata('msg'); ?>
+                  </div>
+                <?php } ?>
+                
                 <div class="form-group input-group form-file-group">
-                   <input type="hidden" id="pageno" />
-                   <input type="text" name="keyword" value="" id="keyword" class="form-control" placeholder="Enter your search keyword" required />
+                   <input type="text" name="city" value="<?php echo $city; ?>" id="city" class="form-control" required />
                    <span class="input-group-btn">
-                        <button type="submit" class="btn btn-custom btn-lg btn-block">Search</button>
+                        <button type="submit" class="btn btn-custom btn-lg btn-block">Save</button>
                    </span>
                 </div>
             </form>
-            
-            <div id="data-container-google" class="data-container"></div>            
-            <div id="data-container-bing" class="data-container"></div>            
         </div>
 
     </div>

@@ -36,6 +36,10 @@ p {
     line-height: 14px;
     width: 95%;
 }
+.clear10 {
+    margin-top: 10px;
+    clear:both;
+}
 .clear20 {
     margin-top: 20px;
     clear: both;
@@ -54,7 +58,15 @@ p {
     padding: 0 10px;
     border-radius: 5px;
 }
-
+.left {
+    float: left;
+}
+.right {
+    float: right;
+}
+.close {
+    line-height: 5px;
+}
 /*    --------------------------------------------------
 	:: Inputs & Buttons
 	-------------------------------------------------- */
