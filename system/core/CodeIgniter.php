@@ -406,6 +406,7 @@ if ( ! is_php('5.4'))
 	
 	if (empty($class) OR ! file_exists(APPPATH.'controllers/'.$RTR->directory.$class.'.php'))
 	{
+		echo "testtest";die;
 		$e404 = TRUE;
 	}
 	else
