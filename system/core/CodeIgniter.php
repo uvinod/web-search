@@ -408,6 +408,7 @@ if ( ! is_php('5.4'))
 	
 	if (empty($class) OR ! file_exists(APPPATH.'controllers/'.$RTR->directory.$class.'.php'))
 	{
+		echo "fsd";die;
 		$e404 = TRUE;
 	}
 	else
