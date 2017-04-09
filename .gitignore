@@ -8,8 +8,6 @@ application/logs/*
 !application/logs/index.html
 !application/logs/.htaccess
 
-.env
-
 /vendor/
 
 # IDE Files
