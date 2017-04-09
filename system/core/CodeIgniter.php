@@ -402,6 +402,7 @@ if ( ! is_php('5.4'))
 	$e404 = FALSE;
 	$class = ucfirst($RTR->class);	
 	$method = $RTR->method;
+	echo phpinfo();die;
 	echo "<pre>";
 	print_r($RTR);
 	echo "</pre>";die;
