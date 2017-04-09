@@ -51,6 +51,8 @@ class Login extends CI_Controller {
         	if(! $result) {
         		$msg = 'You are not inside the 20 km radius.';
 
+                $this->session->sess_destroy();
+                
             	$this->index($msg);
         	} else {
 

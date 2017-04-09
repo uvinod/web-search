@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'https://websearchapp1.herokuapp.com/';
+$config['base_url'] = 'http://sample-env-1.qf82evfzqk.us-west-2.elasticbeanstalk.com/web-search/';
 
 /*
 |--------------------------------------------------------------------------
