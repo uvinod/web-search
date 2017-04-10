@@ -23,10 +23,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  
 <div class="container">
   <div>
+    <p>Location: <?php echo $this->session->userdata('location'); ?></p>
+    <p>Latitude: <?php echo $this->session->userdata('lat'); ?></p>
+    <p>Longitude: <?php echo $this->session->userdata('long'); ?></p>
+  </div>  
+  <div>
     <h2 class="left">Global Search</h2>
     <span class="right"><a href="<?php echo base_url()."login/logout"; ?>">Logout</a></span>
   </div>
   <div class="clear10"></div>
+  
+  
 	<div class="panel panel-default">
         <div class="panel-body">
             <form id="form">

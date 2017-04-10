@@ -10,14 +10,8 @@ class Location_model extends CI_Model{
     public function validate(){
         
         $client_lat = $this->security->xss_clean($this->input->post('lat'));
-        $client_long = $this->security->xss_clean($this->input->post('long'));
+        $client_long = $this->security->xss_clean($this->input->post('long'));        
         
-        if($client_lat=="" || $client_long=="") {
-            $client_loc = explode(",", $this->get_location_by_ip());
-            $client_lat = $client_loc[0];
-            $client_long = $client_loc[1];
-        }
-
         $city = $this->get_city();
 
         $city_loc = explode(",", $this->get_coordinates_by_city($city));
@@ -26,24 +20,14 @@ class Location_model extends CI_Model{
 
         $distance = $this->get_distance($client_lat, $client_long, $city_lat, $city_long);
         
-        if( $distance < 20 ) {
+        if( ($distance / 1000) < 20 ) {
             return true;
         }
 
         return false;
     }
 
-    private function get_location_by_ip(){
-        //$ip = !empty($this->input->server('HTTP_X_FORWARDED_FOR')) ? $this->input->server('HTTP_X_FORWARDED_FOR') : $this->input->server('REMOTE_ADDR');
-
-        $ip = !empty($this->input->server('HTTP_X_FORWARDED_FOR')) ? $this->input->server('HTTP_X_FORWARDED_FOR') : '182.19.179.39';
-        
-        $response = json_decode(file_get_contents("http://ipinfo.io/{$ip}/json"));        
-
-        return $response->loc; 
-    }
-
-    private function get_coordinates_by_city($city){
+    public function get_coordinates_by_city($city){
  
         $city = str_replace(" ", "+", $city); // replace all the white space with "+" sign to match with google search pattern
          
@@ -53,23 +37,33 @@ class Location_model extends CI_Model{
          
         return ($response['results'][0]['geometry']['location']['lat'].",".$response['results'][0]['geometry']['location']['lng']);
      
+    }    
+
+    private function get_distance( $latitude1, $longitude1, $latitude2, $longitude2 ) {  
+
+        $url = "http://maps.googleapis.com/maps/api/distancematrix/json?origins={$latitude1},{$longitude1}&destinations={$latitude2},{$longitude2}";
+         
+        $response = json_decode(file_get_contents($url), TRUE);
+
+        $d = $response['rows'][0]['elements'][0]['distance']['value'];
+
+        return $d;
     }
 
-    function get_distance( $latitude1, $longitude1, $latitude2, $longitude2 ) {  
+    public function get_location($lat, $long) {
 
-        $earth_radius = 6371;
+        $address = "";
 
-        $dLat = deg2rad( $latitude2 - $latitude1 );  
-        $dLon = deg2rad( $longitude2 - $longitude1 );  
+        $url = "http://maps.googleapis.com/maps/api/geocode/json?latlng=".$lat.",".$long."&sensor=true";
 
-        $a = sin($dLat/2) * sin($dLat/2) + cos(deg2rad($latitude1)) * cos(deg2rad($latitude2)) * sin($dLon/2) * sin($dLon/2);  
-        $c = 2 * asin(sqrt($a));  
-        $d = $earth_radius * $c;  
+        $response = json_decode(file_get_contents($url), TRUE);        
+        
+        if($response!=null && count($response) > 0) {
+            $address = $response['results'][0]['formatted_address'];
+        }
 
-        return $d;  
+        return $address;        
     }
-
-
 
     private function get_city()
     {

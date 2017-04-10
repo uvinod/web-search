@@ -7,6 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<title>Login</title>	
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/bootstrap/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/main.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/loader.css">
 
 	<script src="<?php echo base_url(); ?>assets/js/jquery-1.11.0.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/bootstrap/bootstrap.min.js"></script>
@@ -19,7 +20,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     
 </head>
 <body>
-
+ <div class="loading style-2"><div class="loading-wheel"></div></div>
  <section id="login">
     <div class="container">
     	<div class="row">
@@ -36,7 +37,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <?php echo $msg; ?>
                           </div>
                         <?php } ?>
-                        
+                        <div>
+                            <p>Latitude: <span id="lat-p"></span></p>
+                            <p>Langitude: <span id="long-p"></span></p>
+                        </div>
                         <div class="clear20"></div>
                         <div class="form-group">
                             <label for="email" class="sr-only">Email</label>

@@ -56,6 +56,8 @@ class Login extends CI_Controller {
             	$this->index($msg);
         	} else {
 
+                $data = $this->session->get_userdata();
+
         		redirect(base_url().'search');	
 
         	}

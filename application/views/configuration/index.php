@@ -28,8 +28,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div class="panel panel-default">
         <div class="panel-body">
             <form role="form" action='<?php echo base_url();?>configuration/index' method="post" id="form">
-                <input type="hidden" name="id" value="<?php echo $id; ?>" />
-                
+                <input type="hidden" name="id" value="<?php echo $id; ?>" />                
+
                 <?php if($this->session->flashdata('msg')!="") { ?>
                   <div class="alert alert-success alert-dismissable">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -42,6 +42,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                    <span class="input-group-btn">
                         <button type="submit" class="btn btn-custom btn-lg btn-block">Save</button>
                    </span>
+                </div>
+                <div>
+                  <p>Latitude: <?php echo $lat; ?>
+                  <p>Langitude: <?php echo $long; ?>
                 </div>
             </form>
         </div>

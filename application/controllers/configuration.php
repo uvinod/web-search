@@ -46,6 +46,8 @@ class Configuration extends CI_Controller {
 		if($city!="") {
 			$data['id'] = $city->id;
 			$data['city'] = $city->location;
+			$data['lat'] = $city->lat;
+			$data['long'] = $city->long;
 		}
 
 		$this->load->view('configuration/index.php', $data);
